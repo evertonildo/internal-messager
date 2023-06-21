@@ -197,7 +197,16 @@
             if (e.code === 'Enter')
                 sendBtn.click();
         });
-        
+
+
+        //  upfile.addEventListener('click', async (e) => {
+        //      // e.preventDefault();
+        //      console.log('e', e, upfile)
+        //      if(upfile.files[0] !== undefined){
+        //          const file = upfile[0].files[0];
+        //          console.log('file', file);
+        //      }
+        //  })
 
         function onFileChange(upfile) {
             let _upfile = document.getElementById('upfile')?.files[0];
@@ -274,8 +283,8 @@
                 console.log('val', val.data());
                 let _file = val.data().urlImage !== '' ?
                     (val.data()?.fileType === 'image/jpeg' ?
-                        `<img src= '${val.data().urlImage}' style="max-width: 250px;"> <br>` :
-                        `<a href='${val.data().urlImage}' style="max-width: 250px;"  target='_blank'>${val.data().fileName || 'baixar'}</a><br>`) : '';
+                        `<img src= '${val.data().urlImage}' style="max-width: 400px;">` :
+                        `<a href='${val.data().urlImage}' style="max-width: 400px;"  target='_blank'>${val.data().fileName || 'baixar'}</a>`) : '';
                 if (val.data().origin === '44086423391')
                     messageArea.innerHTML += ` <div class="my-message-left">
                                                 <div class="my-message">
