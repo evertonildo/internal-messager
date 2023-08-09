@@ -164,7 +164,7 @@
             <i class="large material-icons pointer">insert_chart</i>
         </div>
         <div class="message" id="message-area">
-           
+
         </div>
     </div>
     <footer>
@@ -189,22 +189,35 @@
         const messageArea = document.getElementById('message-area');
         const inputClass = document.getElementById('input-class');
 
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
 
         let urlArquivo = '';
 
         inputClass.addEventListener('keyup', (e) => {
-            // console.log('keyup', e);
+            // console .log('keyup', e);
             if (e.code === 'Enter')
                 sendBtn.click();
         });
 
+        let x1 = getParameterByName('user');
+        let x2 = getParameterByName('cnpj');
+        console.log('x1', 'x2');
+        console.log(x1, x2);
 
         //  upfile.addEventListener('click', async (e) => {
         //      // e.preventDefault();
-        //      console.log('e', e, upfile)
+        //      console .log('e', e, upfile)
         //      if(upfile.files[0] !== undefined){
         //          const file = upfile[0].files[0];
-        //          console.log('file', file);
+        //          console .log('file', file);
         //      }
         //  })
 
@@ -230,7 +243,7 @@
                     (snapshot) => {
                         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 1;
                         prog.value = progress;
-                        console.log(progress);
+                        //console .log(progress);
 
                     },
                     (error) => { },
@@ -247,7 +260,7 @@
                                     fileName: upfile.name,
                                     created_at: new Date(),
                                 });
-                                // console.log("Document written with ID: ", docRef.id);
+                                // console .log("Document written with ID: ", docRef.id);
                                 urlArquivo = '';
                             } catch (e) {
                                 console.error("Error adding document: ", e);
@@ -268,7 +281,7 @@
                         fileName: '',
                         created_at: new Date(),
                     });
-                    // console.log("Document written with ID: ", docRef.id);
+                    // console .log("Document written with ID: ", docRef.id);
                     urlArquivo = '';
                 } catch (e) {
                     console.error("Error adding document: ", e);
@@ -277,10 +290,10 @@
         });
 
         db.collection('mensagens').orderBy('created_at').onSnapshot((data) => {
-            // console.log(data.docs);
+            // console .log(data.docs);
             messageArea.innerHTML = '';
             data.docs.map((val) => {
-                console.log('val', val.data());
+                // console .log('val', val.data());
                 let _file = val.data().urlImage !== '' ?
                     (val.data()?.fileType === 'image/jpeg' ?
                         `<img src= '${val.data().urlImage}' style="max-width: 400px;">` :
